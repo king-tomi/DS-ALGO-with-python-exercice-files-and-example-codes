@@ -8,7 +8,7 @@ class Polynomials:
        Date Modified: 29 - 06 - 2019
        Author: Ayodabo Tomisin Kolawole"""
 
-    def __init__(self,degree,coefficient):
+    def __init__(self,degree: int,coefficient):
         self.degree = int(degree)
         self.coefficient = coefficient
         self.co_efficient = []

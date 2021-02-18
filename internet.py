@@ -18,7 +18,7 @@ class Process:
         if packets:
             time.sleep(2)
             self._receiver.receive_packets(packets)
-            print("Packets sent amd received successfully")
+            print("Packets sent and received successfully")
         else:
             print("ERROR! packets are not available")
 
@@ -50,7 +50,7 @@ class Sender:
         return self._packets is None
 
     def send_packets(self):
-        if self.check_packets():
+        if not self.check_packets():
             self.state = True
             return self.packets
         else:
@@ -81,10 +81,15 @@ class Receiver:
         self._packets = val
 
     def receive_packets(self,packets):
-        self.packets = packets
+        if packets:
+            self.packets = packets
+        else:
+            self.packets = None
 
     def open_packets(self):
         if not (self.packets is None):
             with open(self.packets,"r") as pack:
-                for line in pack.readlines():
-                    print(line.strip("\n"))
+                print(pack.read())
+
+    def __repr__(self):
+        return f"<Receiver {self.name}>"
